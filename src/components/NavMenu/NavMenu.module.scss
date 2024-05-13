@@ -1,0 +1,70 @@
+:global {
+  body[data-theme="light"] {
+    --background-nav: var(--brown);
+  }
+  body[data-theme="dark"] {
+    --background-nav: var(--gray-400);
+  }
+}
+
+$widthNavMenu: 300px;
+
+.container {
+  position: absolute;
+  z-index: 100;
+  top: -1000px;
+  right: 0;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  width: $widthNavMenu;
+  height: 100vh;
+  background-color: var(--background-nav);
+  color: white;
+  transition: top 0.5s;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    list-style-type: none;
+    padding-top: 20px;
+
+    .firstLine {
+      display: flex;
+      justify-content: space-between;
+    }
+    .secondLine {
+      display: flex;
+      justify-content: space-around;
+    }
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.closeBtn {
+  margin-right: auto;
+  padding-bottom: 10px;
+}
+
+.open {
+  top: 0px;
+  padding: 10px;
+}
+
+.orderButton {
+  margin: 20px;
+  min-width: 250px;
+}

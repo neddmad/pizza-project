@@ -1,0 +1,12 @@
+:global {
+  body[data-theme="light"] {
+    --icon-color: var(--black);
+  }
+  body[data-theme="dark"] {
+    --icon-color: var(--white);
+  }
+}
+
+.icons {
+  color: var(--icon-color);
+}

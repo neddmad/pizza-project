@@ -1,0 +1,49 @@
+:global {
+  body[data-theme="light"] {
+    --background-nav: var(--brown);
+  }
+  body[data-theme="dark"] {
+    --background-nav: var(--gray-400);
+  }
+}
+
+.burgerMenu {
+  position: absolute;
+  z-index: 102;
+  top: -250px;
+  left: 0;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  background-color: var(--background-nav);
+  color: white;
+  transition: top 0.5s;
+}
+
+.openBurger {
+  top: 0px;
+  padding: 10px;
+}
+
+.closeBtn {
+  margin-left: auto;
+}
+
+.list {
+  list-style: none;
+
+  li {
+    list-style-type: none;
+    padding-top: 20px;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+
+    &:hover {
+      color: bisque;
+    }
+  }
+}

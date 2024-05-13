@@ -1,0 +1,60 @@
+:global {
+  body[data-theme="light"] {
+    --display-none-light: var(--display-none);
+    --text-color: var(--black);
+    --onHoverBuy: var(--colorOnHover);
+  }
+  body[data-theme="dark"] {
+    --onHoverBuy: var(--gray-100);
+    --text-color: var(--white);
+    --display-none-dark: var(--display-none);
+  }
+}
+
+.pizzaSallad {
+  display: var(--display-none-dark);
+}
+.blackPizzaSallad {
+  display: var(--display-none-light);
+}
+.brodOhSmor {
+  display: var(--display-none-dark);
+}
+.blackBrodOhSmor {
+  display: var(--display-none-light);
+}
+
+.salat {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  list-style: none;
+  color: var(--text-color);
+  justify-content: center;
+  padding: 0;
+  margin: 50px;
+  li {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    img {
+      width: 200px;
+      height: 150px;
+    }
+    button {
+      margin-bottom: 5px;
+      width: 150px;
+      background-color: white;
+      border-radius: 10px;
+      &:hover {
+        transition: 0.5s;
+        background-color: var(--onHoverBuy);
+      }
+    }
+
+    &:hover {
+      transition: 0.5s;
+      box-shadow: 0px 0px 4px rgb(113, 106, 106);
+    }
+  }
+}

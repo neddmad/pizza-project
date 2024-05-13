@@ -1,0 +1,33 @@
+:global {
+  body[data-theme="light"] {
+    --switcher-color: var(--white);
+    --switcher-color-hover: var(--white);
+  }
+
+  body[data-theme="dark"] {
+    --switcher-color: var(--white);
+    --switcher-color-hover: var(--white);
+  }
+}
+
+.switcher {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+
+  span {
+    color: var(--switcher-color);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+  }
+
+  svg {
+    fill: var(--switcher-color-hover);
+  }
+}
+
+.icon {
+  fill: var(--switcher-color);
+}

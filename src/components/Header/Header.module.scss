@@ -1,0 +1,47 @@
+:global {
+  body[data-theme="light"] {
+    --header-color: var(--brown);
+  }
+  body[data-theme="dark"] {
+    --header-color: var(--gray-400);
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-evenly;
+  background-color: var(--header-color);
+  padding: 10px;
+  align-items: center;
+  padding-right: 100px;
+}
+
+.menuIcon {
+  color: white;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.reactIcon {
+  color: white;
+  display: flex;
+  align-items: center;
+}
+
+.adressForm {
+  border: none;
+  color: rgb(255, 255, 255);
+  background: inherit;
+  cursor: pointer;
+}
+
+.displayFlex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .shoppingCart {
+    color: white;
+    cursor: pointer;
+  }
+}
