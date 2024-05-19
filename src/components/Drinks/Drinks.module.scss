@@ -56,3 +56,10 @@
     }
   }
 }
+
+@media (max-width: 720px) {
+  .drinks {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}

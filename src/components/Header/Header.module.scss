@@ -45,3 +45,13 @@
     cursor: pointer;
   }
 }
+
+@media (max-width: 720px) {
+  .reactIcon {
+    display: none;
+  }
+  .header {
+    justify-content: space-around;
+    padding-right: 0px;
+  }
+}

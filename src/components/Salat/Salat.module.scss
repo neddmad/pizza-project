@@ -58,3 +58,10 @@
     }
   }
 }
+
+@media (max-width: 720px) {
+  .salat {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}

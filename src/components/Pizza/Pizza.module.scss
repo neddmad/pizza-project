@@ -89,3 +89,9 @@
   border-radius: 15px;
   padding: 5px;
 }
+
+@media (max-width: 720px) {
+  .pizza {
+    grid-template-columns: 1fr;
+  }
+}

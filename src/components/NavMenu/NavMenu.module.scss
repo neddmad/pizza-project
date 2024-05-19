@@ -12,9 +12,8 @@ $widthNavMenu: 300px;
 .container {
   position: absolute;
   z-index: 100;
-  top: -1000px;
+  top: -100vmax;
   right: 0;
-  padding: 10px;
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
