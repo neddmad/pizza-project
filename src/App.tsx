@@ -284,19 +284,14 @@ function App() {
         }}
       >
         <BurgerMenu />
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-          }}
-        >
+        <div className={"wrapper"}>
           <Header />
           <div className={isMenuOpen ? "opacityApply" : undefined}>
             <Main />
           </div>
           <NavMenu />
+          <Footer />
         </div>
-        <Footer />
       </MyContext.Provider>
     </BrowserRouter>
   );
