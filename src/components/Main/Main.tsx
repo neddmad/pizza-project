@@ -5,18 +5,14 @@ import LunchDiningIcon from "@mui/icons-material/LunchDining";
 import LocalBarIcon from "@mui/icons-material/LocalBar";
 import { MyContext } from "../myContext/MyContext";
 import { Audio } from "react-loader-spinner";
-import { Route, Routes } from "react-router-dom";
+import { Link, Route, Routes, useLocation } from "react-router-dom";
 import Drinks from "../Drinks/Drinks";
 import Pizza from "../Pizza/Pizza";
 import Salat from "../Salat/Salat";
-import {
-  NavbarContainer,
-  NavbarLinkContainer,
-  NavbarLink,
-} from "../Styles/NavStyle";
 import Slider from "../Slider/Slider";
 
 function Main() {
+  const { pathname } = useLocation();
   const {
     error,
     isLoaded,
@@ -49,19 +45,26 @@ function Main() {
   } else {
     return (
       <div>
-        <NavbarContainer>
-          <NavbarLinkContainer>
-            <NavbarLink className={styles.icons} to="/pizza">
-              <LocalPizzaIcon />
-            </NavbarLink>
-            <NavbarLink className={styles.icons} to="/salat">
-              <LunchDiningIcon />
-            </NavbarLink>
-            <NavbarLink className={styles.icons} to="/drinks">
-              <LocalBarIcon />
-            </NavbarLink>
-          </NavbarLinkContainer>
-        </NavbarContainer>
+        <div className={styles.menuIcons}>
+          <Link
+            className={pathname === "/pizza" ? styles.styleGray : styles.icons}
+            to="/pizza"
+          >
+            <LocalPizzaIcon />
+          </Link>
+          <Link
+            className={pathname === "/salat" ? styles.styleGray : styles.icons}
+            to="/salat"
+          >
+            <LunchDiningIcon />
+          </Link>
+          <Link
+            className={pathname === "/drinks" ? styles.styleGray : styles.icons}
+            to="/drinks"
+          >
+            <LocalBarIcon />
+          </Link>
+        </div>
         <hr style={{ margin: "5px" }} />
         <Routes>
           <Route path="*" element={<Slider />} />

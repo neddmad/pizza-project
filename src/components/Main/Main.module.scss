@@ -10,3 +10,14 @@
 .icons {
   color: var(--icon-color);
 }
+
+.styleGray {
+  color: gray;
+}
+
+.menuIcons {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  margin-top: 10px;
+}
