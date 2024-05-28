@@ -1,18 +1,8 @@
 .logoutIcon {
   color: white;
   cursor: pointer;
-  &:hover {
-    background-color: rgb(11, 11, 11);
-  }
 }
 .loginIcon {
   cursor: pointer;
   color: white;
-}
-
-.loginIcon::before {
-  content: "ddddddddd";
-  width: min-content;
-
-  background-color: green;
 }

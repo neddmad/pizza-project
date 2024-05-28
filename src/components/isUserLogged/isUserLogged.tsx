@@ -23,9 +23,21 @@ function IsUserLogged({ togglePop }: Props) {
     logOut();
   }, [user]);
   if (user) {
-    return <LogoutIcon className={styles.logoutIcon} onClick={logOut} />;
+    return (
+      <LogoutIcon
+        className={styles.logoutIcon}
+        data-tooltip="Log Out"
+        onClick={logOut}
+      />
+    );
   } else {
-    return <LoginIcon className={styles.loginIcon} onClick={togglePop} />;
+    return (
+      <LoginIcon
+        className={styles.loginIcon}
+        data-tooltip="Log In"
+        onClick={togglePop}
+      />
+    );
   }
 }
 
