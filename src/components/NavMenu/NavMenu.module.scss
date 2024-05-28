@@ -12,13 +12,13 @@ $widthNavMenu: 300px;
 .container {
   position: absolute;
   z-index: 100;
-  top: -100vmax;
+  top: -100vh;
   right: 0;
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
   width: $widthNavMenu;
-  height: 100vh;
+  max-height: 95vh;
   background-color: var(--background-nav);
   color: white;
   transition: top 0.5s;

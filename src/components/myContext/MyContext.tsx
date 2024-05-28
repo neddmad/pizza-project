@@ -20,7 +20,6 @@ interface contextInterface {
   getRestaurant: RestaurantInterface[];
   handleOrder: () => Promise<void>;
   keyItems: KeyItemsInterface[];
-  setKeyItems: React.Dispatch<React.SetStateAction<KeyItemsInterface[]>>;
   data: DataInterface | null;
   readOrder: ReadOrderInterface[];
   getDetailsOrder: () => Promise<void>;
@@ -33,6 +32,8 @@ interface contextInterface {
   deletesElement: (id: number, name: string) => void;
   setToppings: (value: string, item: ItemsInterface) => void;
   newToppings: Array<{ name: string; updatedToppings: string[] }>;
+  handleButtonState: Boolean;
+  togglePop: () => void;
 }
 
 export const MyContext = React.createContext<contextInterface>(

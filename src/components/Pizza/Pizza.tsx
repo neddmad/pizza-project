@@ -14,6 +14,7 @@ export interface propsInterface {
   isInBasketFunc: () => void;
   setToppings: (value: string, item: ItemsInterface) => void;
   newToppings: Array<{ name: string; updatedToppings: string[] }>;
+  handleButtonState: Boolean;
 }
 
 function Pizza({
@@ -23,6 +24,7 @@ function Pizza({
   isInBasketFunc,
   setToppings,
   newToppings,
+  handleButtonState,
 }: propsInterface) {
   return (
     <ul className={styles.pizza}>
@@ -67,7 +69,7 @@ function Pizza({
                   </li>
                 ))}
               </ul>
-              {isMenuOpen ? null : isInBasket.find(
+              {isMenuOpen || handleButtonState ? null : isInBasket.find(
                   (e: { id?: number }) => e.id === item.id
                 ) ? (
                 <div>Товар вже у кошику</div>

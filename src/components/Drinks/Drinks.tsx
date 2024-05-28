@@ -10,6 +10,7 @@ interface propsDrinksInterface {
   isMenuOpen: Boolean;
   isInBasket: Array<{}>;
   isInBasketFunc: () => void;
+  handleButtonState: Boolean;
 }
 
 function Drinks({
@@ -17,6 +18,7 @@ function Drinks({
   isMenuOpen,
   isInBasket,
   isInBasketFunc,
+  handleButtonState,
 }: propsDrinksInterface) {
   return (
     <ul className={styles.drinks}>
@@ -42,7 +44,7 @@ function Drinks({
               )}
               <span>{item.name}</span>
               <span>{item.price} $</span>
-              {isMenuOpen ? null : isInBasket.find(
+              {isMenuOpen || handleButtonState ? null : isInBasket.find(
                   (e: { id?: number }) => e.id === item.id
                 ) ? (
                 <div>Товар вже у кошику</div>

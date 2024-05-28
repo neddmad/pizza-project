@@ -6,6 +6,7 @@ import LocalBarIcon from "@mui/icons-material/LocalBar";
 import { MyContext } from "../myContext/MyContext";
 import { Audio } from "react-loader-spinner";
 import { Link, Route, Routes, useLocation } from "react-router-dom";
+import Checkout from "../Checkout/Checkout";
 import Drinks from "../Drinks/Drinks";
 import Pizza from "../Pizza/Pizza";
 import Salat from "../Salat/Salat";
@@ -22,6 +23,9 @@ function Main() {
     isInBasketFunc,
     setToppings,
     newToppings,
+    handleButtonState,
+    keyItems,
+    readOrder,
   } = useContext(MyContext);
 
   if (error) {
@@ -42,6 +46,8 @@ function Main() {
         />
       </div>
     );
+  } else if (readOrder.length !== 0) {
+    return <Checkout order={keyItems} />;
   } else {
     return (
       <div>
@@ -78,6 +84,7 @@ function Main() {
                 isMenuOpen={isMenuOpen}
                 isInBasketFunc={isInBasketFunc}
                 isInBasket={isInBasket}
+                handleButtonState={handleButtonState}
               />
             }
           />
@@ -89,6 +96,7 @@ function Main() {
                 isMenuOpen={isMenuOpen}
                 isInBasketFunc={isInBasketFunc}
                 isInBasket={isInBasket}
+                handleButtonState={handleButtonState}
               />
             }
           />
@@ -100,6 +108,7 @@ function Main() {
                 isMenuOpen={isMenuOpen}
                 isInBasketFunc={isInBasketFunc}
                 isInBasket={isInBasket}
+                handleButtonState={handleButtonState}
               />
             }
           />

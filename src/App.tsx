@@ -16,9 +16,11 @@ import {
   ReadOrderInterface,
   RestaurantInterface,
 } from "./components/types";
+import Auth from "./components/Auth/Auth";
 
 function App() {
   const [error, setError] = useState<string | null>(null);
+  const [seen, setSeen] = useState<Boolean>(false);
   const [isLoaded, setIsLoaded] = useState<Boolean>(false);
   const [items, setItems] = useState<ItemsInterface[]>([]);
   const [isMenuOpen, setIsMenuOpen] = useState<Boolean>(false);
@@ -208,8 +210,10 @@ function App() {
       }
     }
   };
+
   //get details for order
   const getDetailsOrder = async (): Promise<void> => {
+    closeNavMenu();
     try {
       const request = await fetch(
         `https://private-anon-15ea9634ce-pizzaapp.apiary-mock.com/orders/${
@@ -228,6 +232,10 @@ function App() {
   //----------------------------------------------
   const functionSetLocation = (event: React.FormEvent<HTMLSelectElement>) => {
     setLocationRestaurant((event.target as HTMLSelectElement).value);
+  };
+  //----------------------------------------------
+  const togglePop = () => {
+    setSeen(!seen);
   };
   //----------------------------------------------
   const openBurgerMenu = () => {
@@ -271,7 +279,6 @@ function App() {
           getRestaurant,
           handleOrder,
           keyItems,
-          setKeyItems,
           data,
           readOrder,
           getDetailsOrder,
@@ -281,8 +288,11 @@ function App() {
           closeBurgerMenu,
           setToppings,
           newToppings,
+          handleButtonState,
+          togglePop,
         }}
       >
+        {seen ? <Auth togglePop={togglePop} /> : null}
         <BurgerMenu />
         <div className={"wrapper"}>
           <Header />

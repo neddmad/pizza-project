@@ -30,6 +30,9 @@
   gap: 20px;
   span a {
     color: rgb(255, 255, 255);
+    &:hover {
+      color: bisque;
+    }
   }
 }
 

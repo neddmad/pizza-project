@@ -6,7 +6,11 @@ import pizzaGif from "../assets/headerGif/pizzaGif.gif";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "react-router-dom";
 import ThemeSwitcher from "../ThemeSwitcher/ThemeSwitcher";
-
+import IsUserLogged from "../isUserLogged/isUserLogged";
+// import LoginIcon from "@mui/icons-material/Login";
+// import LogoutIcon from "@mui/icons-material/Logout";
+// import { user, auth } from "../config/firebase-config";
+// import { signOut } from "firebase/auth";
 function Header() {
   const {
     openNavMenu,
@@ -14,6 +18,7 @@ function Header() {
     locationRestaurant,
     functionSetLocation,
     openBurgerMenu,
+    togglePop,
   } = useContext(MyContext);
 
   return (
@@ -42,6 +47,7 @@ function Header() {
         </select>
       </form>
       <ThemeSwitcher />
+      <IsUserLogged togglePop={togglePop} />
       <div className={styles.displayFlex}>
         <ShoppingCartIcon
           className={styles.shoppingCart}

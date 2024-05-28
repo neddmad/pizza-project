@@ -4,6 +4,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import styles from "./NavMenu.module.scss";
 import classNames from "classnames";
 import { MyContext } from "../myContext/MyContext";
+import { useOutsideClick } from "../hooks/hooks";
 
 const NavMenu = () => {
   const {
@@ -22,18 +23,7 @@ const NavMenu = () => {
   } = useContext(MyContext);
 
   //outside Nav click handle
-  const navRef = useRef<HTMLElement | null>(null);
-  useEffect(() => {
-    const handlerClick = ({ target }: MouseEvent): void => {
-      if (!navRef.current?.contains(target as Node)) {
-        closeNavMenu();
-      }
-    };
-    window.addEventListener("mousedown", handlerClick);
-    return () => {
-      window.removeEventListener("mousedown", handlerClick);
-    };
-  });
+  const ref = useOutsideClick(closeNavMenu);
 
   //apply styles depending on useState isMenuOpen
   const opensNavMenu = classNames(styles.container, {
@@ -41,7 +31,7 @@ const NavMenu = () => {
   });
 
   return (
-    <nav className={opensNavMenu} ref={navRef}>
+    <nav className={opensNavMenu} ref={ref}>
       <CancelPresentationIcon
         className={styles.closeBtn}
         onClick={closeNavMenu}

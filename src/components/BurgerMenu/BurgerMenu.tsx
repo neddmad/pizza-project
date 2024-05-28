@@ -4,27 +4,17 @@ import styles from "../BurgerMenu/BurgerMenu.module.scss";
 import CancelPresentationIcon from "@mui/icons-material/CancelPresentation";
 import classNames from "classnames";
 import { Link } from "react-router-dom";
+import { useOutsideClick } from "../hooks/hooks";
 
 function BurgerMenu() {
   const { isBurgerOpen, closeBurgerMenu } = useContext(MyContext);
   const opensBurgerMenu = classNames(styles.burgerMenu, {
     [styles.openBurger]: isBurgerOpen,
   });
-  const burgerRef = useRef<HTMLElement | null>(null);
-  useEffect(() => {
-    const handlerClick = ({ target }: MouseEvent): void => {
-      if (!burgerRef.current?.contains(target as Node)) {
-        closeBurgerMenu();
-      }
-    };
+  const ref = useOutsideClick(closeBurgerMenu);
 
-    window.addEventListener("mousedown", handlerClick);
-    return () => {
-      window.removeEventListener("mousedown", handlerClick);
-    };
-  });
   return (
-    <nav className={opensBurgerMenu} ref={burgerRef}>
+    <nav className={opensBurgerMenu} ref={ref}>
       <CancelPresentationIcon
         className={styles.closeBtn}
         onClick={closeBurgerMenu}
