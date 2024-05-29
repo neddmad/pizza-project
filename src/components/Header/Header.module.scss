@@ -38,12 +38,21 @@
 
 .displayFlex {
   display: flex;
-  flex-direction: column;
+  // flex-direction: column;
+  position: relative;
   align-items: center;
   .shoppingCart {
     color: white;
     cursor: pointer;
   }
+}
+
+.localStorage {
+  font-weight: 900;
+  position: absolute;
+  color: white;
+  bottom: -10px;
+  right: -10px;
 }
 
 @media (max-width: 720px) {

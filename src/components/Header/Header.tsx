@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import styles from "./Header.module.scss";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { MyContext } from "../myContext/MyContext";
@@ -7,10 +7,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "react-router-dom";
 import ThemeSwitcher from "../ThemeSwitcher/ThemeSwitcher";
 import IsUserLogged from "../isUserLogged/isUserLogged";
-// import LoginIcon from "@mui/icons-material/Login";
-// import LogoutIcon from "@mui/icons-material/Logout";
-// import { user, auth } from "../config/firebase-config";
-// import { signOut } from "firebase/auth";
+import classNames from "classnames";
 function Header() {
   const {
     openNavMenu,
@@ -20,6 +17,8 @@ function Header() {
     openBurgerMenu,
     togglePop,
   } = useContext(MyContext);
+  //localStorage
+  let localStorageValues = Object.values(localStorage);
 
   return (
     <div className={styles.header}>
@@ -53,6 +52,9 @@ function Header() {
           className={styles.shoppingCart}
           onClick={openNavMenu}
         />
+        <span className={styles.localStorage}>
+          {!localStorageValues.length ? null : localStorageValues.length}
+        </span>
       </div>
     </div>
   );
