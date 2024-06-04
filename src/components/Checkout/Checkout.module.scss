@@ -1,3 +1,23 @@
+:global {
+  body[data-theme="light"] {
+    --text-color: var(--black);
+  }
+  body[data-theme="dark"] {
+    --text-color: var(--white);
+  }
+}
+
 .checkoutList {
   list-style-type: decimal;
+}
+.checkout {
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  padding-left: 100px;
+}
+
+.checkoutNumber {
+  text-decoration: underline 0.15em rgba(0, 0, 0, 0);
+  transition: text-decoration-color 300ms;
 }

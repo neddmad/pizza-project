@@ -5,6 +5,7 @@ import styles from "./NavMenu.module.scss";
 import classNames from "classnames";
 import { MyContext } from "../myContext/MyContext";
 import { useOutsideClick } from "../hooks/hooks";
+import { Link } from "react-router-dom";
 
 const NavMenu = () => {
   const {
@@ -85,9 +86,11 @@ const NavMenu = () => {
             ))}
           </ul>
           {keyItems.length === 0 ? null : prevValue?.current === data ? (
-            <button className={styles.orderButton} onClick={getDetailsOrder}>
-              Переглянути замовлення
-            </button>
+            <Link to="/checkout">
+              <button className={styles.orderButton} onClick={getDetailsOrder}>
+                Переглянути замовлення
+              </button>
+            </Link>
           ) : (
             <button className={styles.orderButton} onClick={handleOrder}>
               Оформити замовлення

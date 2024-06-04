@@ -7,7 +7,6 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "react-router-dom";
 import ThemeSwitcher from "../ThemeSwitcher/ThemeSwitcher";
 import IsUserLogged from "../isUserLogged/isUserLogged";
-import classNames from "classnames";
 function Header() {
   const {
     openNavMenu,

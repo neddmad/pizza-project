@@ -8,7 +8,7 @@ interface checkoutInterface {
 
 function Checkout({ order }: checkoutInterface) {
   return (
-    <div>
+    <div className={styles.checkout}>
       <h1>Ваше замовлення :</h1>
       <ul className={styles.checkoutList}>
         {order.map((elem) => (
@@ -21,13 +21,15 @@ function Checkout({ order }: checkoutInterface) {
       </ul>
       <h2>
         На суму:{" "}
-        {order.reduce(
-          (init, elem) =>
-            elem.quantity && typeof elem.quantity === "number"
-              ? (init += elem.price * elem.quantity)
-              : init + elem.price,
-          0
-        ) + " $"}
+        <a className={styles.checkoutNumber}>
+          {order.reduce(
+            (init, elem) =>
+              elem.quantity && typeof elem.quantity === "number"
+                ? (init += elem.price * elem.quantity)
+                : init + elem.price,
+            0
+          ) + " $"}
+        </a>
       </h2>
     </div>
   );

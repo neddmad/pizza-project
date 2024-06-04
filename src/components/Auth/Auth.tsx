@@ -38,7 +38,10 @@ export const Auth = ({ togglePop }: popUpSignIn) => {
       <form className={styles.popupInner} ref={ref}>
         <div className={styles.closeForm}>
           <label>Пошта</label>
-          <CancelPresentationIcon onClick={togglePop} />
+          <CancelPresentationIcon
+            style={{ cursor: "pointer" }}
+            onClick={togglePop}
+          />
         </div>
         <input placeholder="Пошта" onChange={(e) => setEmail(e.target.value)} />
         <label>Пароль</label>
