@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect, useState, useRef } from "react";
 import { getAuth } from "firebase/auth";
 import { signOut } from "firebase/auth";
 import LoginIcon from "@mui/icons-material/Login";
@@ -10,8 +10,17 @@ interface Props {
 }
 
 function IsUserLogged({ togglePop }: Props) {
+  const [checkRef, setCheckRef] = useState(false);
   const auth = getAuth();
   const user = auth.currentUser;
+  const ref = useRef(null);
+
+  const checkRefFunc = () => {
+    if (ref.current !== null) {
+      setCheckRef(true);
+    }
+  };
+
   const logOut = async () => {
     try {
       await signOut(auth);
@@ -19,15 +28,17 @@ function IsUserLogged({ togglePop }: Props) {
       console.error(err);
     }
   };
-  useEffect(() => {
-    logOut();
-  }, [user]);
-  if (user) {
+
+  if (user && checkRef === false) {
     return (
       <LogoutIcon
         className={styles.logoutIcon}
         data-tooltip="Log Out"
-        onClick={logOut}
+        onClick={() => {
+          logOut();
+          checkRefFunc();
+        }}
+        ref={ref}
       />
     );
   } else {
@@ -35,7 +46,10 @@ function IsUserLogged({ togglePop }: Props) {
       <LoginIcon
         className={styles.loginIcon}
         data-tooltip="Log In"
-        onClick={togglePop}
+        onClick={() => {
+          togglePop();
+          setCheckRef(false);
+        }}
       />
     );
   }

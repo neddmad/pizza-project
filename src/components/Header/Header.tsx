@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import styles from "./Header.module.scss";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { MyContext } from "../myContext/MyContext";
