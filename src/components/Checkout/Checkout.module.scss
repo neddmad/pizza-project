@@ -1,20 +1,30 @@
 :global {
   body[data-theme="light"] {
     --text-color: var(--black);
+    --borderColor: var(--blackBorder);
   }
   body[data-theme="dark"] {
     --text-color: var(--white);
+    --borderColor: var(--whiteBorder);
   }
 }
 
 .checkoutList {
   list-style-type: decimal;
+  font-size: larger;
+  font-weight: 500;
+}
+
+.center {
+  border: var(--borderColor);
+  padding: 40px;
+  margin-top: 20px;
 }
 .checkout {
   color: var(--text-color);
   display: flex;
   flex-direction: column;
-  padding-left: 150px;
+  align-items: center;
 }
 
 .checkoutNumber {
@@ -38,4 +48,3 @@
   transform: scaleX(1);
   transform-origin: bottom left;
 }
-

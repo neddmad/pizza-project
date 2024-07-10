@@ -12,6 +12,8 @@
   --gray-400: #1e2a47;
   --gray-500: #141d2f;
   --black: black;
+  --whiteBorder: 2px solid white;
+  --blackBorder: 2px solid black;
 
   --display-none: none;
 
