@@ -1,7 +1,11 @@
 .container {
   overflow-x: hidden;
+  height: 604px;
+  overflow-y: hidden;
+  padding-top: 5px;
+
   img {
     width: 100%;
-    height: 600px;
+    height: 604px;
   }
 }

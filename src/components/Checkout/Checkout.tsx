@@ -1,18 +1,22 @@
 import React from "react";
 import { KeyItemsInterface } from "../types";
 import styles from "./Checkout.module.scss";
+import classNames from "classnames";
+import { useLocation } from "react-router-dom";
 
 interface checkoutInterface {
   order: KeyItemsInterface[];
 }
 
 function Checkout({ order }: checkoutInterface) {
+  const { pathname } = useLocation();
+
   return (
     <div className={styles.checkout}>
       <h1>Ваше замовлення :</h1>
       <ul className={styles.checkoutList}>
         {order.map((elem) => (
-          <li>
+          <li key={elem.id}>
             {elem.topping && elem.topping.length !== 0
               ? elem.name + " with " + elem.topping
               : elem.name}

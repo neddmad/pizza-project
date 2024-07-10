@@ -79,7 +79,6 @@ function Main() {
             <LocalBarIcon />
           </Link>
         </div>
-        <hr style={{ margin: "5px" }} />
         <Routes>
           <Route path="*" element={<Slider />} />
           <Route
