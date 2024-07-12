@@ -194,7 +194,7 @@ function App() {
         restuarantId: locationRestaurant === "Kungsgatan 1" ? 1 : 2,
       };
       const { data } = await axios.post(
-        "https://private-anon-15ea9634ce-pizzaapp.apiary-mock.com/orders/",
+        "https://private-anon-5f391d6f0b-pizzaapp.apiary-mock.com/orders/",
         newData,
         {
           headers: {
