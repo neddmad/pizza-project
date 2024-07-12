@@ -52,7 +52,7 @@ function App() {
   //get a list of restaurants
   useEffect(() => {
     fetch(
-      "https://private-anon-15ea9634ce-pizzaapp.apiary-mock.com/restaurants/"
+      "https://private-anon-5f391d6f0b-pizzaapp.apiary-mock.com/restaurants/"
     )
       .then((response) => response.json())
       .then((result) => {
@@ -67,7 +67,7 @@ function App() {
   //get the menu
   useEffect(() => {
     fetch(
-      "https://private-anon-15ea9634ce-pizzaapp.apiary-mock.com/restaurants/restaurantId/menu?category=Pizza&orderBy=rank"
+      "https://private-anon-5f391d6f0b-pizzaapp.apiary-mock.com/restaurants/restaurantId/menu?category=Pizza&orderBy=rank"
     )
       .then((res) => res.json())
       .then(
@@ -216,7 +216,7 @@ function App() {
     closeNavMenu();
     try {
       const request = await fetch(
-        `https://private-anon-15ea9634ce-pizzaapp.apiary-mock.com/orders/${
+        `https://private-anon-5f391d6f0b-pizzaapp.apiary-mock.com/orders/${
           data === null ? null : data.orderId
         }`
       );
