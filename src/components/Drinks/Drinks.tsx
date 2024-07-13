@@ -3,10 +3,10 @@ import Cocacola from "../assets/drinksPhotos/coca-cola.jpg";
 import Citron from "../assets/drinksPhotos/citron.jpg";
 import darkCocaCola from "../assets/drinksPhotos/coca-cola-Photoroom.png-Photoroom.jpg";
 import darkCitron from "../assets/drinksPhotos/citron-Photoroom.png-Photoroom.jpg";
-import { ItemsInterface } from "../types";
+import { MenuInterface } from "../types";
 
 interface propsDrinksInterface {
-  drinks: ItemsInterface[] | null;
+  drinks: MenuInterface[] | null;
   isMenuOpen: Boolean;
   isInBasket: Array<{}>;
   isInBasketFunc: () => void;

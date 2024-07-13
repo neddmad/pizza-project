@@ -3,10 +3,10 @@ import Pizzasallad from "../assets/pizzaSalatPhotos/pizzasallad.jpg";
 import BrodOhSmor from "../assets/pizzaSalatPhotos/brodOhSmor.jpg";
 import BlackPizzasallad from "../assets/pizzaSalatPhotos/pizzasallad-Photoroom.png-Photoroom.jpg";
 import BlackBrodOhSmor from "../assets/pizzaSalatPhotos/brodOhSmor-Photoroom.png-Photoroom.jpg";
-import { ItemsInterface } from "../types";
+import { MenuInterface } from "../types";
 
 interface propsInterface {
-  salat: ItemsInterface[] | null;
+  salat: MenuInterface[] | null;
   isMenuOpen: Boolean;
   isInBasket: Array<{}>;
   isInBasketFunc: () => void;

@@ -7,7 +7,7 @@ export interface ReadOrderInterface {
   status: string;
   totalPrice: number;
 }
-export interface KeyItemsInterface {
+export interface BasketItemsInterface {
   id: number;
   category: string;
   name: string;
@@ -15,7 +15,7 @@ export interface KeyItemsInterface {
   quantity: number | boolean;
   topping?: Array<string>;
 }
-export interface ItemsInterface {
+export interface MenuInterface {
   id: number;
   name: string;
   category: string;
@@ -31,7 +31,7 @@ export interface RestaurantInterface {
   name: string;
 }
 
-export interface DataInterface {
+export interface PurchaseDataInterface {
   orderId: number;
   totalPrice: number;
   orderedAt: string;

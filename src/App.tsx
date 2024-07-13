@@ -10,9 +10,9 @@ import axios from "axios";
 import BurgerMenu from "./components/BurgerMenu/BurgerMenu";
 import React from "react";
 import {
-  DataInterface,
-  ItemsInterface,
-  KeyItemsInterface,
+  PurchaseDataInterface,
+  MenuInterface,
+  BasketItemsInterface,
   ReadOrderInterface,
   RestaurantInterface,
 } from "./components/types";
@@ -22,14 +22,15 @@ function App() {
   const [error, setError] = useState<string | null>(null);
   const [seen, setSeen] = useState<Boolean>(false);
   const [isLoaded, setIsLoaded] = useState<Boolean>(false);
-  const [items, setItems] = useState<ItemsInterface[]>([]);
+  const [menu, setMenu] = useState<MenuInterface[]>([]);
   const [isMenuOpen, setIsMenuOpen] = useState<Boolean>(false);
   const [isBurgerOpen, setIsBurgerOpen] = useState<Boolean>(false);
   const [isInBasket, setIsInBasket] = useState<Array<{}>>([]);
   const [getRestaurant, setGetRestaurant] = useState<RestaurantInterface[]>([]);
   const [locationRestaurant, setLocationRestaurant] = useState<string>("");
-  const [keyItems, setKeyItems] = useState<KeyItemsInterface[]>([]);
-  const [data, setData] = useState<DataInterface | null>(null);
+  const [basketItems, setBasketItems] = useState<BasketItemsInterface[]>([]);
+  const [purchaseData, setPurchaseData] =
+    useState<PurchaseDataInterface | null>(null);
   const [readOrder, setReadOrder] = useState<ReadOrderInterface[]>([]);
   const [handleButtonState, setHandleButtonState] = useState<Boolean>(false);
   const [newToppings, setNewToppings] = useState<
@@ -39,7 +40,7 @@ function App() {
     { name: "Hawaii", updatedToppings: [] },
     { name: "Parma", updatedToppings: [] },
   ]);
-  const prevValue = useRef<{ current: DataInterface | null } | null>({
+  const prevValue = useRef<{ current: PurchaseDataInterface | null } | null>({
     current: {
       orderId: 1,
       totalPrice: 1,
@@ -73,7 +74,7 @@ function App() {
       .then(
         (result) => {
           setIsLoaded(true);
-          setItems(result);
+          setMenu(result);
         },
         (error) => {
           setIsLoaded(true);
@@ -83,9 +84,8 @@ function App() {
   }, []);
   //add products to basket
   useEffect(() => {
-    let localStorageValues = Object.values(localStorage);
-    let parsedValues = localStorageValues.map((e) => JSON.parse(e));
-    let keyItemsValues = keyItems.map((obj) => {
+    let parsedValues = Object.values(localStorage).map((e) => JSON.parse(e));
+    let keyItemsValues = basketItems.map((obj) => {
       return {
         ...obj,
         topping: newToppings.find((e) => e.name === obj.name)?.updatedToppings,
@@ -111,16 +111,16 @@ function App() {
       Boolean(value)
     );
 
-    if (keyItems.length === 0) {
-      setKeyItems(updatedParsedValues);
+    if (basketItems.length === 0) {
+      setBasketItems(updatedParsedValues);
     } else {
-      setKeyItems([...keyItemsValues, ...parsedValuesFiltered]);
+      setBasketItems([...keyItemsValues, ...parsedValuesFiltered]);
     }
   }, [isMenuOpen, handleButtonState]);
 
   //add product to basket
   const addProduct = (id: number) => {
-    setKeyItems((keyItems) => {
+    setBasketItems((keyItems) => {
       return keyItems.map((obj) => {
         if (obj.id === id) {
           return {
@@ -133,14 +133,14 @@ function App() {
     });
   };
 
-  //delete product from basket
-  const deleteProduct = (id: number, name: string): void => {
+  //decreases product count in basket
+  const decreaseProductCount = (id: number, name: string): void => {
     if (
-      !!keyItems.find(
+      !!basketItems.find(
         (e) => typeof e.quantity === "number" && e.quantity > 1 && e.id === id
       )
     ) {
-      setKeyItems((keyItems) => {
+      setBasketItems((keyItems) => {
         return keyItems.map((obj) => {
           if (obj.id === id && obj.name === name) {
             return {
@@ -155,11 +155,11 @@ function App() {
         });
       });
     } else {
-      deletesElement(id, name);
+      deleteFromBasketAndStorage(id, name);
     }
   };
   //set toppings
-  const setToppings = (value: string, item: ItemsInterface) => {
+  const setToppings = (value: string, item: MenuInterface) => {
     setNewToppings((newToppings) =>
       newToppings.map((e) => {
         if (e.name === item.name) {
@@ -175,17 +175,17 @@ function App() {
       })
     );
   };
-  //deletes element from basket and localStorage
-  const deletesElement = (id: number, name: string): void => {
+  //deletes product from basket and localStorage
+  const deleteFromBasketAndStorage = (id: number, name: string): void => {
     localStorage.removeItem(name);
-    setKeyItems(keyItems.filter((e) => e.id !== id));
+    setBasketItems(basketItems.filter((e) => e.id !== id));
   };
   //order handle
   const handleOrder = async (): Promise<void> => {
     setHandleButtonState(true);
     try {
       const newData = {
-        data: keyItems.map((elem) => {
+        data: basketItems.map((elem) => {
           return {
             menuItemId: elem.id,
             quantity: elem.quantity || 1,
@@ -202,7 +202,8 @@ function App() {
           },
         }
       );
-      setData(data);
+      setPurchaseData(data);
+
       prevValue.current = data;
     } catch (error) {
       if (error instanceof Error) {
@@ -217,7 +218,7 @@ function App() {
     try {
       const request = await fetch(
         `https://private-anon-5f391d6f0b-pizzaapp.apiary-mock.com/orders/${
-          data === null ? null : data.orderId
+          purchaseData === null ? null : purchaseData.orderId
         }`
       );
 
@@ -264,11 +265,11 @@ function App() {
       <MyContext.Provider
         value={{
           addProduct,
-          deleteProduct,
-          deletesElement,
+          decreaseProductCount,
+          deleteFromBasketAndStorage,
           error,
           isLoaded,
-          items,
+          menu,
           isMenuOpen,
           openNavMenu,
           closeNavMenu,
@@ -278,8 +279,8 @@ function App() {
           locationRestaurant,
           getRestaurant,
           handleOrder,
-          keyItems,
-          data,
+          basketItems,
+          purchaseData,
           readOrder,
           getDetailsOrder,
           prevValue,

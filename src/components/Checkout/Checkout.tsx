@@ -1,11 +1,11 @@
 import React from "react";
-import { KeyItemsInterface } from "../types";
+import { BasketItemsInterface } from "../types";
 import styles from "./Checkout.module.scss";
 import classNames from "classnames";
 import { useLocation } from "react-router-dom";
 
 interface checkoutInterface {
-  order: KeyItemsInterface[];
+  order: BasketItemsInterface[];
 }
 
 function Checkout({ order }: checkoutInterface) {

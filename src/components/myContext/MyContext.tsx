@@ -1,15 +1,15 @@
 import React from "react";
 import {
-  DataInterface,
-  ItemsInterface,
-  KeyItemsInterface,
+  PurchaseDataInterface,
+  MenuInterface,
+  BasketItemsInterface,
   ReadOrderInterface,
   RestaurantInterface,
 } from "../types";
 interface contextInterface {
   error: string | null;
   isLoaded: Boolean;
-  items: ItemsInterface[] | null;
+  menu: MenuInterface[] | null;
   isMenuOpen: Boolean;
   openNavMenu: () => void;
   closeNavMenu: () => void;
@@ -19,8 +19,8 @@ interface contextInterface {
   locationRestaurant: string;
   getRestaurant: RestaurantInterface[];
   handleOrder: () => Promise<void>;
-  keyItems: KeyItemsInterface[];
-  data: DataInterface | null;
+  basketItems: BasketItemsInterface[];
+  purchaseData: PurchaseDataInterface | null;
   readOrder: ReadOrderInterface[];
   getDetailsOrder: () => Promise<void>;
   prevValue: { current: {} | null } | null;
@@ -28,9 +28,9 @@ interface contextInterface {
   openBurgerMenu: () => void;
   closeBurgerMenu: () => void;
   addProduct: (id: number) => void;
-  deleteProduct: (id: number, name: string) => void;
-  deletesElement: (id: number, name: string) => void;
-  setToppings: (value: string, item: ItemsInterface) => void;
+  decreaseProductCount: (id: number, name: string) => void;
+  deleteFromBasketAndStorage: (id: number, name: string) => void;
+  setToppings: (value: string, item: MenuInterface) => void;
   newToppings: Array<{ name: string; updatedToppings: string[] }>;
   handleButtonState: Boolean;
   togglePop: () => void;

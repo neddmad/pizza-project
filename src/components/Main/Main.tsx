@@ -22,14 +22,14 @@ function Main() {
   const {
     error,
     isLoaded,
-    items,
+    menu,
     isMenuOpen,
     isInBasket,
     isInBasketFunc,
     setToppings,
     newToppings,
     handleButtonState,
-    keyItems,
+    basketItems,
     readOrder,
   } = useContext(MyContext);
   const { pathname } = useLocation();
@@ -87,7 +87,7 @@ function Main() {
               <Pizza
                 newToppings={newToppings}
                 setToppings={setToppings}
-                pizza={items}
+                pizza={menu}
                 isMenuOpen={isMenuOpen}
                 isInBasketFunc={isInBasketFunc}
                 isInBasket={isInBasket}
@@ -99,7 +99,7 @@ function Main() {
             path="/salat"
             element={
               <Salat
-                salat={items}
+                salat={menu}
                 isMenuOpen={isMenuOpen}
                 isInBasketFunc={isInBasketFunc}
                 isInBasket={isInBasket}
@@ -111,7 +111,7 @@ function Main() {
             path="/drinks"
             element={
               <Drinks
-                drinks={items}
+                drinks={menu}
                 isMenuOpen={isMenuOpen}
                 isInBasketFunc={isInBasketFunc}
                 isInBasket={isInBasket}
@@ -119,7 +119,7 @@ function Main() {
               />
             }
           />
-          <Route path="/checkout" element={<Checkout order={keyItems} />} />
+          <Route path="/checkout" element={<Checkout order={basketItems} />} />
         </Routes>
       </div>
     );

@@ -11,15 +11,15 @@ const NavMenu = () => {
   const {
     isMenuOpen,
     closeNavMenu,
-    keyItems,
+    basketItems,
     handleOrder,
     getDetailsOrder,
-    data,
+    purchaseData,
     prevValue,
     readOrder,
     addProduct,
-    deleteProduct,
-    deletesElement,
+    decreaseProductCount,
+    deleteFromBasketAndStorage,
     newToppings,
   } = useContext(MyContext);
 
@@ -41,9 +41,9 @@ const NavMenu = () => {
         <div>
           <div>Ваше замовлення на суму :</div>
           <span>
-            {keyItems.length === 0
+            {basketItems.length === 0
               ? "У Вас немає товарів в кошику"
-              : keyItems.reduce(
+              : basketItems.reduce(
                   (init, elem) =>
                     elem.quantity && typeof elem.quantity === "number"
                       ? (init += elem.price * elem.quantity)
@@ -52,7 +52,7 @@ const NavMenu = () => {
                 ) + " $"}
           </span>
           <ul className={styles.list}>
-            {keyItems.map((elem) => (
+            {basketItems.map((elem) => (
               <li key={elem.id}>
                 <span className={styles.firstLine}>
                   {elem.name}
@@ -67,7 +67,9 @@ const NavMenu = () => {
                     : null}
                   {
                     <DeleteIcon
-                      onClick={() => deletesElement(elem.id, elem.name)}
+                      onClick={() =>
+                        deleteFromBasketAndStorage(elem.id, elem.name)
+                      }
                     />
                   }
                 </span>
@@ -75,7 +77,9 @@ const NavMenu = () => {
                 <span className={styles.secondLine}>
                   {elem.price + " $"}
                   {
-                    <button onClick={() => deleteProduct(elem.id, elem.name)}>
+                    <button
+                      onClick={() => decreaseProductCount(elem.id, elem.name)}
+                    >
                       -
                     </button>
                   }
@@ -85,7 +89,8 @@ const NavMenu = () => {
               </li>
             ))}
           </ul>
-          {keyItems.length === 0 ? null : prevValue?.current === data ? (
+          {basketItems.length === 0 ? null : prevValue?.current ===
+            purchaseData ? (
             <Link to="/checkout">
               <button className={styles.orderButton} onClick={getDetailsOrder}>
                 Переглянути замовлення

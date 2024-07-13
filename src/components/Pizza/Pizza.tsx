@@ -5,14 +5,14 @@ import pizzaParma from "../assets/pizzaPhotos/pizzaParma.jpg";
 import darkParma from "../assets/pizzaPhotos/pizzaParma-Photoroom.png-Photoroom.jpg";
 import darkVesuvius from "../assets/pizzaPhotos/pizzaVesuvio-Photoroom.png-Photoroom.jpg";
 import darkHawaii from "../assets/pizzaPhotos/pizzaHawaii-Photoroom.png-Photoroom.jpg";
-import { ItemsInterface } from "../types";
+import { MenuInterface } from "../types";
 
 export interface propsInterface {
-  pizza: ItemsInterface[] | null;
+  pizza: MenuInterface[] | null;
   isMenuOpen: Boolean;
   isInBasket: Array<{}>;
   isInBasketFunc: () => void;
-  setToppings: (value: string, item: ItemsInterface) => void;
+  setToppings: (value: string, item: MenuInterface) => void;
   newToppings: Array<{ name: string; updatedToppings: string[] }>;
   handleButtonState: Boolean;
 }
