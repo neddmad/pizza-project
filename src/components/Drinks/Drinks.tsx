@@ -3,27 +3,20 @@ import Cocacola from "../assets/drinksPhotos/coca-cola.jpg";
 import Citron from "../assets/drinksPhotos/citron.jpg";
 import darkCocaCola from "../assets/drinksPhotos/coca-cola-Photoroom.png-Photoroom.jpg";
 import darkCitron from "../assets/drinksPhotos/citron-Photoroom.png-Photoroom.jpg";
-import { MenuInterface } from "../types";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { isInBasketFunc } from "../../features/OthersSlice/OthersSlice";
 
-interface propsDrinksInterface {
-  drinks: MenuInterface[] | null;
-  isMenuOpen: Boolean;
-  isInBasket: Array<{}>;
-  isInBasketFunc: () => void;
-  handleButtonState: Boolean;
-}
-
-function Drinks({
-  drinks,
-  isMenuOpen,
-  isInBasket,
-  isInBasketFunc,
-  handleButtonState,
-}: propsDrinksInterface) {
+function Drinks() {
+  const dispatch = useAppDispatch();
+  const dataFetchingState = useAppSelector((state) => state.data);
+  const othersSliceState = useAppSelector((state) => state.others);
+  const NavOrderHandlerSliceState = useAppSelector(
+    (state) => state.NavOrderHandler
+  );
   return (
     <ul className={styles.drinks}>
-      {drinks !== null &&
-        drinks
+      {dataFetchingState.menu !== null &&
+        dataFetchingState.menu
           .filter((e) => e.category === "Dryck")
           .map((item) => (
             <li key={item.id}>
@@ -44,7 +37,8 @@ function Drinks({
               )}
               <span>{item.name}</span>
               <span>{item.price} $</span>
-              {isMenuOpen || handleButtonState ? null : isInBasket.find(
+              {othersSliceState.isMenuOpen ||
+              NavOrderHandlerSliceState.handleButtonState ? null : othersSliceState.isInBasket.find(
                   (e: { id?: number }) => e.id === item.id
                 ) ? (
                 <div>Товар вже у кошику</div>
@@ -52,7 +46,7 @@ function Drinks({
                 <button
                   onClick={() => {
                     localStorage.setItem(item.name, JSON.stringify(item));
-                    isInBasketFunc();
+                    dispatch(isInBasketFunc());
                   }}
                 >
                   В кошик

@@ -1,9 +1,8 @@
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 import styles from "./Main.module.scss";
 import LocalPizzaIcon from "@mui/icons-material/LocalPizza";
 import LunchDiningIcon from "@mui/icons-material/LunchDining";
 import LocalBarIcon from "@mui/icons-material/LocalBar";
-import { MyContext } from "../myContext/MyContext";
 import { Audio } from "react-loader-spinner";
 import {
   Link,
@@ -17,30 +16,19 @@ import Drinks from "../Drinks/Drinks";
 import Pizza from "../Pizza/Pizza";
 import Salat from "../Salat/Salat";
 import Slider from "../Slider/Slider";
+import { useAppSelector } from "../../app/hooks";
 
 function Main() {
-  const {
-    error,
-    isLoaded,
-    menu,
-    isMenuOpen,
-    isInBasket,
-    isInBasketFunc,
-    setToppings,
-    newToppings,
-    handleButtonState,
-    basketItems,
-    readOrder,
-  } = useContext(MyContext);
+  const dataFetchingState = useAppSelector((state) => state.data);
   const { pathname } = useLocation();
   const navigate = useNavigate();
   useEffect(() => {
     navigate("/");
   }, []);
 
-  if (error) {
-    return <div>Помилка : {error}</div>;
-  } else if (!isLoaded) {
+  if (dataFetchingState.error) {
+    return <div>Помилка : {dataFetchingState.error}</div>;
+  } else if (!dataFetchingState.isLoaded) {
     return (
       <div>
         <Audio
@@ -81,45 +69,10 @@ function Main() {
         </div>
         <Routes>
           <Route path="*" element={<Slider />} />
-          <Route
-            path="pizza"
-            element={
-              <Pizza
-                newToppings={newToppings}
-                setToppings={setToppings}
-                pizza={menu}
-                isMenuOpen={isMenuOpen}
-                isInBasketFunc={isInBasketFunc}
-                isInBasket={isInBasket}
-                handleButtonState={handleButtonState}
-              />
-            }
-          />
-          <Route
-            path="/salat"
-            element={
-              <Salat
-                salat={menu}
-                isMenuOpen={isMenuOpen}
-                isInBasketFunc={isInBasketFunc}
-                isInBasket={isInBasket}
-                handleButtonState={handleButtonState}
-              />
-            }
-          />
-          <Route
-            path="/drinks"
-            element={
-              <Drinks
-                drinks={menu}
-                isMenuOpen={isMenuOpen}
-                isInBasketFunc={isInBasketFunc}
-                isInBasket={isInBasket}
-                handleButtonState={handleButtonState}
-              />
-            }
-          />
-          <Route path="/checkout" element={<Checkout order={basketItems} />} />
+          <Route path="pizza" element={<Pizza />} />
+          <Route path="/salat" element={<Salat />} />
+          <Route path="/drinks" element={<Drinks />} />
+          <Route path="/checkout" element={<Checkout />} />
         </Routes>
       </div>
     );

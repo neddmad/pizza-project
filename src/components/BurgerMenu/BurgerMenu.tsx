@@ -1,23 +1,26 @@
 import React, { useContext, useEffect, useRef } from "react";
-import { MyContext } from "../myContext/MyContext";
 import styles from "../BurgerMenu/BurgerMenu.module.scss";
 import CancelPresentationIcon from "@mui/icons-material/CancelPresentation";
 import classNames from "classnames";
 import { Link } from "react-router-dom";
 import { useOutsideClick } from "../hooks/hooks";
+import { closeBurgerMenu } from "../../features/OthersSlice/OthersSlice";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 
 function BurgerMenu() {
-  const { isBurgerOpen, closeBurgerMenu } = useContext(MyContext);
+  const dispatch = useAppDispatch();
+  const othersSliceState = useAppSelector((state) => state.others);
+
   const opensBurgerMenu = classNames(styles.burgerMenu, {
-    [styles.openBurger]: isBurgerOpen,
+    [styles.openBurger]: othersSliceState.isBurgerOpen,
   });
-  const ref = useOutsideClick(closeBurgerMenu);
+  const ref = useOutsideClick(() => dispatch(closeBurgerMenu()));
 
   return (
     <nav className={opensBurgerMenu} ref={ref}>
       <CancelPresentationIcon
         className={styles.closeBtn}
-        onClick={closeBurgerMenu}
+        onClick={() => dispatch(closeBurgerMenu())}
       />
       <div>Меню :</div>
       <ul className={styles.list}>

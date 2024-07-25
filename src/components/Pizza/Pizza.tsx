@@ -5,31 +5,22 @@ import pizzaParma from "../assets/pizzaPhotos/pizzaParma.jpg";
 import darkParma from "../assets/pizzaPhotos/pizzaParma-Photoroom.png-Photoroom.jpg";
 import darkVesuvius from "../assets/pizzaPhotos/pizzaVesuvio-Photoroom.png-Photoroom.jpg";
 import darkHawaii from "../assets/pizzaPhotos/pizzaHawaii-Photoroom.png-Photoroom.jpg";
-import { MenuInterface } from "../types";
+import { setToppings } from "../../features/BasketSlice/BasketSlice";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { isInBasketFunc } from "../../features/OthersSlice/OthersSlice";
 
-export interface propsInterface {
-  pizza: MenuInterface[] | null;
-  isMenuOpen: Boolean;
-  isInBasket: Array<{}>;
-  isInBasketFunc: () => void;
-  setToppings: (value: string, item: MenuInterface) => void;
-  newToppings: Array<{ name: string; updatedToppings: string[] }>;
-  handleButtonState: Boolean;
-}
-
-function Pizza({
-  pizza,
-  isMenuOpen,
-  isInBasket,
-  isInBasketFunc,
-  setToppings,
-  newToppings,
-  handleButtonState,
-}: propsInterface) {
+function Pizza() {
+  const dispatch = useAppDispatch();
+  const dataFetchingState = useAppSelector((state) => state.data);
+  const othersSliceState = useAppSelector((state) => state.others);
+  const NavOrderHandlerSliceState = useAppSelector(
+    (state) => state.NavOrderHandler
+  );
+  const basketSliceState = useAppSelector((state) => state.basket);
   return (
     <ul className={styles.pizza}>
-      {pizza !== null &&
-        pizza
+      {dataFetchingState.menu !== null &&
+        dataFetchingState.menu
           .filter((e: { category: string }) => e.category === "Pizza")
           .map((item) => (
             <li key={item.id}>
@@ -55,10 +46,10 @@ function Pizza({
               <ul className={styles.gridToppings}>
                 {item.topping.map((topping: string, index) => (
                   <li
-                    onClick={() => setToppings(topping, item)}
+                    onClick={() => dispatch(setToppings({ topping, item }))}
                     key={index}
                     className={
-                      newToppings
+                      basketSliceState.newToppings
                         .find((nm) => nm.name === item.name)
                         ?.updatedToppings.includes(topping)
                         ? styles.clickedTopping
@@ -69,7 +60,8 @@ function Pizza({
                   </li>
                 ))}
               </ul>
-              {isMenuOpen || handleButtonState ? null : isInBasket.find(
+              {othersSliceState.isMenuOpen ||
+              NavOrderHandlerSliceState.handleButtonState ? null : othersSliceState.isInBasket.find(
                   (e: { id?: number }) => e.id === item.id
                 ) ? (
                 <div>Товар вже у кошику</div>
@@ -77,7 +69,7 @@ function Pizza({
                 <button
                   onClick={() => {
                     localStorage.setItem(item.name, JSON.stringify(item));
-                    isInBasketFunc();
+                    dispatch(isInBasketFunc());
                   }}
                 >
                   В кошик

@@ -3,20 +3,18 @@ import { BasketItemsInterface } from "../types";
 import styles from "./Checkout.module.scss";
 import classNames from "classnames";
 import { useLocation } from "react-router-dom";
+import { useAppSelector } from "../../app/hooks";
 
-interface checkoutInterface {
-  order: BasketItemsInterface[];
-}
-
-function Checkout({ order }: checkoutInterface) {
+function Checkout() {
   const { pathname } = useLocation();
+  const basketSliceState = useAppSelector((state) => state.basket.basketItems);
 
   return (
     <div className={styles.checkout}>
       <div className={styles.center}>
         <h1>Ваше замовлення :</h1>
         <ul className={styles.checkoutList}>
-          {order.map((elem) => (
+          {basketSliceState.map((elem) => (
             <li key={elem.id}>
               {elem.topping && elem.topping.length !== 0
                 ? elem.name + " with " + elem.topping + " - " + elem.quantity
@@ -27,7 +25,7 @@ function Checkout({ order }: checkoutInterface) {
         <h2>
           На суму:{" "}
           <a className={styles.checkoutNumber}>
-            {order.reduce(
+            {basketSliceState.reduce(
               (init, elem) =>
                 elem.quantity && typeof elem.quantity === "number"
                   ? (init += elem.price * elem.quantity)

@@ -7,12 +7,13 @@ import appStore from "../assets/footerIcons/Download_on_the_App_Store_Badge.svg.
 import googleStore from "../assets/footerIcons/google-play-badge-logo-png-transparent.png";
 import visa from "../assets/footerIcons/visaLogo.svg";
 import masterCard from "../assets/footerIcons/masterCard.png";
-import { MyContext } from "../myContext/MyContext";
 import { useContext } from "react";
+import { useAppSelector } from "../../app/hooks";
 
 function Footer() {
-  const { isLoaded } = useContext(MyContext);
-  if (isLoaded) {
+  const dataFetchingState = useAppSelector((state) => state.data);
+
+  if (dataFetchingState.isLoaded) {
     return (
       <div className={styles.footerComp}>
         <div className={styles.footer}>

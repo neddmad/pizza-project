@@ -4,26 +4,21 @@ import BrodOhSmor from "../assets/pizzaSalatPhotos/brodOhSmor.jpg";
 import BlackPizzasallad from "../assets/pizzaSalatPhotos/pizzasallad-Photoroom.png-Photoroom.jpg";
 import BlackBrodOhSmor from "../assets/pizzaSalatPhotos/brodOhSmor-Photoroom.png-Photoroom.jpg";
 import { MenuInterface } from "../types";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { isInBasketFunc } from "../../features/OthersSlice/OthersSlice";
 
-interface propsInterface {
-  salat: MenuInterface[] | null;
-  isMenuOpen: Boolean;
-  isInBasket: Array<{}>;
-  isInBasketFunc: () => void;
-  handleButtonState: Boolean;
-}
-
-function Salat({
-  salat,
-  isMenuOpen,
-  isInBasket,
-  isInBasketFunc,
-  handleButtonState,
-}: propsInterface) {
+function Salat() {
+  const dispatch = useAppDispatch();
+  const dataFetchingState = useAppSelector((state) => state.data);
+  const othersSliceState = useAppSelector((state) => state.others);
+  const NavOrderHandlerSliceState = useAppSelector(
+    (state) => state.NavOrderHandler
+  );
+  const basketSliceState = useAppSelector((state) => state.basket);
   return (
     <ul className={styles.salat}>
-      {salat !== null &&
-        salat
+      {dataFetchingState.menu !== null &&
+        dataFetchingState.menu
           .filter((e: { category: string }) => e.category === "Tillbehör")
           .map((item: { id: number; name: string; price: number }) => (
             <li key={item.id}>
@@ -52,7 +47,7 @@ function Salat({
               )}
               <span>{item.name}</span>
               <span>{item.price} $</span>
-              {isMenuOpen || handleButtonState ? null : isInBasket.find(
+              {othersSliceState.isMenuOpen || NavOrderHandlerSliceState.handleButtonState ? null : othersSliceState.isInBasket.find(
                   (e: { id?: number }) => e.id === item.id
                 ) ? (
                 <div>Товар вже у кошику</div>
@@ -60,7 +55,7 @@ function Salat({
                 <button
                   onClick={() => {
                     localStorage.setItem(item.name, JSON.stringify(item));
-                    isInBasketFunc();
+                    dispatch(isInBasketFunc())
                   }}
                 >
                   В кошик

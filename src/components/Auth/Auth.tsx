@@ -1,19 +1,18 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import { auth, googleProvider } from "../config/firebase-config";
 import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import GoogleIcon from "@mui/icons-material/Google";
 import styles from "./Auth.module.scss";
 import { useOutsideClick } from "../hooks/hooks";
 import CancelPresentationIcon from "@mui/icons-material/CancelPresentation";
+import { useAppDispatch } from "../../app/hooks";
+import { togglePop } from "../../features/OthersSlice/OthersSlice";
 
-interface popUpSignIn {
-  togglePop: () => void;
-}
-
-export const Auth = ({ togglePop }: popUpSignIn) => {
+export const Auth = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const ref = useOutsideClick(togglePop);
+  const dispatch = useAppDispatch();
+  const ref = useOutsideClick(() => dispatch(togglePop()));
   const signIn = async (e: any) => {
     e.preventDefault();
     try {
@@ -21,7 +20,7 @@ export const Auth = ({ togglePop }: popUpSignIn) => {
     } catch (err) {
       console.error(err);
     }
-    togglePop();
+    dispatch(togglePop());
   };
   const signInWithGoogle = async (e: any) => {
     e.preventDefault();
@@ -30,7 +29,7 @@ export const Auth = ({ togglePop }: popUpSignIn) => {
     } catch (err) {
       console.error(err);
     }
-    togglePop();
+    dispatch(togglePop());
   };
 
   return (
@@ -40,7 +39,7 @@ export const Auth = ({ togglePop }: popUpSignIn) => {
           <label>Пошта</label>
           <CancelPresentationIcon
             style={{ cursor: "pointer" }}
-            onClick={togglePop}
+            onClick={() => dispatch(togglePop())}
           />
         </div>
         <input placeholder="Пошта" onChange={(e) => setEmail(e.target.value)} />

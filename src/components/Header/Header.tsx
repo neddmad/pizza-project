@@ -1,29 +1,28 @@
-import { useContext } from "react";
 import styles from "./Header.module.scss";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { MyContext } from "../myContext/MyContext";
 import pizzaGif from "../assets/headerGif/pizzaGif.gif";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "react-router-dom";
 import ThemeSwitcher from "../ThemeSwitcher/ThemeSwitcher";
 import IsUserLogged from "../isUserLogged/isUserLogged";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import {
+  functionSetLocation,
+  openBurgerMenu,
+  openNavMenu,
+} from "../../features/OthersSlice/OthersSlice";
+
 function Header() {
-  const {
-    openNavMenu,
-    getRestaurant,
-    locationRestaurant,
-    functionSetLocation,
-    openBurgerMenu,
-    togglePop,
-    isLoaded,
-  } = useContext(MyContext);
+  const dispatch = useAppDispatch();
+  const dataFetchingState = useAppSelector((state) => state.data);
+  const othersSliceState = useAppSelector((state) => state.others);
   //localStorage
   let localStorageValues = Object.values(localStorage);
-  if (isLoaded) {
+  if (dataFetchingState.isLoaded) {
     return (
       <div className={styles.header}>
         <span className={styles.menuIcon}>
-          <MenuIcon onClick={openBurgerMenu} />
+          <MenuIcon onClick={() => dispatch(openBurgerMenu())} />
         </span>
         <div className={styles.reactIcon}>
           <Link to="/" style={{ textDecoration: "none", color: "white" }}>
@@ -38,23 +37,29 @@ function Header() {
         <form>
           <select
             className={styles.adressForm}
-            value={locationRestaurant}
-            onChange={functionSetLocation}
+            value={othersSliceState.locationRestaurant}
+            onChange={(event) =>
+              dispatch(functionSetLocation(event.target.value))
+            }
           >
             <option style={{ color: "black" }}>
-              {getRestaurant.map((e) => (e.id === 1 ? e.address1 : null))}
+              {dataFetchingState.restaurants.map((e) =>
+                e.id === 1 ? e.address1 : null
+              )}
             </option>
             <option style={{ color: "black" }}>
-              {getRestaurant.map((e) => (e.id === 2 ? e.address1 : null))}
+              {dataFetchingState.restaurants.map((e) =>
+                e.id === 2 ? e.address1 : null
+              )}
             </option>
           </select>
         </form>
         <ThemeSwitcher />
-        <IsUserLogged togglePop={togglePop} />
+        <IsUserLogged />
         <div className={styles.displayFlex}>
           <ShoppingCartIcon
             className={styles.shoppingCart}
-            onClick={openNavMenu}
+            onClick={() => dispatch(openNavMenu())}
           />
           <span className={styles.localStorage}>
             {!localStorageValues.length ? null : localStorageValues.length}
