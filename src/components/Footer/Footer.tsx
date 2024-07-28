@@ -1,14 +1,13 @@
-import FacebookIcon from "@mui/icons-material/Facebook";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import TwitterIcon from "@mui/icons-material/Twitter";
-import styles from "./Footer.module.scss";
-import pizzaStatic from "../assets/footerIcons/pizzaStatic.png";
-import appStore from "../assets/footerIcons/Download_on_the_App_Store_Badge.svg.webp";
 import googleStore from "../assets/footerIcons/google-play-badge-logo-png-transparent.png";
-import visa from "../assets/footerIcons/visaLogo.svg";
+import appStore from "../assets/footerIcons/Download_on_the_App_Store_Badge.svg.webp";
+import pizzaStatic from "../assets/footerIcons/pizzaStatic.png";
 import masterCard from "../assets/footerIcons/masterCard.png";
-import { useContext } from "react";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import visa from "../assets/footerIcons/visaLogo.svg";
 import { useAppSelector } from "../../app/hooks";
+import styles from "./Footer.module.scss";
 
 function Footer() {
   const dataFetchingState = useAppSelector((state) => state.data);

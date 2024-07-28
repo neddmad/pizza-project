@@ -1,11 +1,10 @@
-import styles from "./Salat.module.scss";
-import Pizzasallad from "../assets/pizzaSalatPhotos/pizzasallad.jpg";
-import BrodOhSmor from "../assets/pizzaSalatPhotos/brodOhSmor.jpg";
 import BlackPizzasallad from "../assets/pizzaSalatPhotos/pizzasallad-Photoroom.png-Photoroom.jpg";
 import BlackBrodOhSmor from "../assets/pizzaSalatPhotos/brodOhSmor-Photoroom.png-Photoroom.jpg";
-import { MenuInterface } from "../types";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { isInBasketFunc } from "../../features/OthersSlice/OthersSlice";
+import Pizzasallad from "../assets/pizzaSalatPhotos/pizzasallad.jpg";
+import BrodOhSmor from "../assets/pizzaSalatPhotos/brodOhSmor.jpg";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import styles from "./Salat.module.scss";
 
 function Salat() {
   const dispatch = useAppDispatch();
@@ -47,7 +46,8 @@ function Salat() {
               )}
               <span>{item.name}</span>
               <span>{item.price} $</span>
-              {othersSliceState.isMenuOpen || NavOrderHandlerSliceState.handleButtonState ? null : othersSliceState.isInBasket.find(
+              {othersSliceState.isMenuOpen ||
+              NavOrderHandlerSliceState.handleButtonState ? null : othersSliceState.isInBasket.find(
                   (e: { id?: number }) => e.id === item.id
                 ) ? (
                 <div>Товар вже у кошику</div>
@@ -55,7 +55,7 @@ function Salat() {
                 <button
                   onClick={() => {
                     localStorage.setItem(item.name, JSON.stringify(item));
-                    dispatch(isInBasketFunc())
+                    dispatch(isInBasketFunc());
                   }}
                 >
                   В кошик

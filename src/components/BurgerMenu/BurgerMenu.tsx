@@ -1,11 +1,10 @@
-import React, { useContext, useEffect, useRef } from "react";
-import styles from "../BurgerMenu/BurgerMenu.module.scss";
 import CancelPresentationIcon from "@mui/icons-material/CancelPresentation";
-import classNames from "classnames";
-import { Link } from "react-router-dom";
-import { useOutsideClick } from "../hooks/hooks";
 import { closeBurgerMenu } from "../../features/OthersSlice/OthersSlice";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import styles from "../BurgerMenu/BurgerMenu.module.scss";
+import { useOutsideClick } from "../hooks/hooks";
+import { Link } from "react-router-dom";
+import classNames from "classnames";
 
 function BurgerMenu() {
   const dispatch = useAppDispatch();

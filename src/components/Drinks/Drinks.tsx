@@ -1,10 +1,10 @@
-import styles from "./Drinks.module.scss";
-import Cocacola from "../assets/drinksPhotos/coca-cola.jpg";
-import Citron from "../assets/drinksPhotos/citron.jpg";
 import darkCocaCola from "../assets/drinksPhotos/coca-cola-Photoroom.png-Photoroom.jpg";
 import darkCitron from "../assets/drinksPhotos/citron-Photoroom.png-Photoroom.jpg";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { isInBasketFunc } from "../../features/OthersSlice/OthersSlice";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import Cocacola from "../assets/drinksPhotos/coca-cola.jpg";
+import Citron from "../assets/drinksPhotos/citron.jpg";
+import styles from "./Drinks.module.scss";
 
 function Drinks() {
   const dispatch = useAppDispatch();

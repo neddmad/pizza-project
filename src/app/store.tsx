@@ -1,8 +1,8 @@
-import { configureStore } from "@reduxjs/toolkit";
-import DataFetchingReducer from "../features/api/DataFetching";
+import NavOrderHandlerSliceReducer from "../features/NavOrderHandlerSlice/NavOrderHandlerSlice";
 import BasketSliceReducer from "../features/BasketSlice/BasketSlice";
 import OthersSliceReducer from "../features/OthersSlice/OthersSlice";
-import NavOrderHandlerSliceReducer from "../features/NavOrderHandlerSlice/NavOrderHandlerSlice";
+import DataFetchingReducer from "../features/api/DataFetching";
+import { configureStore } from "@reduxjs/toolkit";
 
 export const store = configureStore({
   reducer: {

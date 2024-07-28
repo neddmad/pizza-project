@@ -1,17 +1,18 @@
-import "./App.css";
-import Header from "./components/Header/Header";
-import Main from "./components/Main/Main";
-import Footer from "./components/Footer/Footer";
-import { useEffect } from "react";
-import { BrowserRouter } from "react-router-dom";
-import NavMenu from "./components/NavMenu/NavMenu";
-import BurgerMenu from "./components/BurgerMenu/BurgerMenu";
-import Auth from "./components/Auth/Auth";
+import { setInitialValuesBasket } from "./features/BasketSlice/BasketSlice";
 import { fetchMenu, fetchRestaurants } from "./features/api/DataFetching";
+import { isInBasketFunc } from "./features/OthersSlice/OthersSlice";
+import BurgerMenu from "./components/BurgerMenu/BurgerMenu";
+import NavMenu from "./components/NavMenu/NavMenu";
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
+import { BrowserRouter } from "react-router-dom";
 import { useAppDispatch } from "./app/hooks";
 import { useAppSelector } from "./app/hooks";
-import { setInitialValuesBasket } from "./features/BasketSlice/BasketSlice";
-import { isInBasketFunc } from "./features/OthersSlice/OthersSlice";
+import Main from "./components/Main/Main";
+import Auth from "./components/Auth/Auth";
+import { useEffect } from "react";
+import "./App.css";
+
 function App() {
   const dispatch = useAppDispatch();
   const othersSliceState = useAppSelector((state) => state.others);

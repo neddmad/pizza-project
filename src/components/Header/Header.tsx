@@ -1,11 +1,11 @@
-import styles from "./Header.module.scss";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import pizzaGif from "../assets/headerGif/pizzaGif.gif";
-import MenuIcon from "@mui/icons-material/Menu";
-import { Link } from "react-router-dom";
-import ThemeSwitcher from "../ThemeSwitcher/ThemeSwitcher";
-import IsUserLogged from "../isUserLogged/isUserLogged";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import ThemeSwitcher from "../ThemeSwitcher/ThemeSwitcher";
+import pizzaGif from "../assets/headerGif/pizzaGif.gif";
+import IsUserLogged from "../isUserLogged/isUserLogged";
+import MenuIcon from "@mui/icons-material/Menu";
+import styles from "./Header.module.scss";
+import { Link } from "react-router-dom";
 import {
   functionSetLocation,
   openBurgerMenu,

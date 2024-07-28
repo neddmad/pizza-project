@@ -1,13 +1,13 @@
-import styles from "./Pizza.module.scss";
-import pizzaHawaii from "../assets/pizzaPhotos/pizzaHawaii.jpg";
-import pizzaVesuvius from "../assets/pizzaPhotos/pizzaVesuvio.jpg";
-import pizzaParma from "../assets/pizzaPhotos/pizzaParma.jpg";
-import darkParma from "../assets/pizzaPhotos/pizzaParma-Photoroom.png-Photoroom.jpg";
 import darkVesuvius from "../assets/pizzaPhotos/pizzaVesuvio-Photoroom.png-Photoroom.jpg";
 import darkHawaii from "../assets/pizzaPhotos/pizzaHawaii-Photoroom.png-Photoroom.jpg";
-import { setToppings } from "../../features/BasketSlice/BasketSlice";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import darkParma from "../assets/pizzaPhotos/pizzaParma-Photoroom.png-Photoroom.jpg";
 import { isInBasketFunc } from "../../features/OthersSlice/OthersSlice";
+import { setToppings } from "../../features/BasketSlice/BasketSlice";
+import pizzaVesuvius from "../assets/pizzaPhotos/pizzaVesuvio.jpg";
+import pizzaHawaii from "../assets/pizzaPhotos/pizzaHawaii.jpg";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import pizzaParma from "../assets/pizzaPhotos/pizzaParma.jpg";
+import styles from "./Pizza.module.scss";
 
 function Pizza() {
   const dispatch = useAppDispatch();

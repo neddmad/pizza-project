@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import { auth, googleProvider } from "../config/firebase-config";
 import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
-import GoogleIcon from "@mui/icons-material/Google";
-import styles from "./Auth.module.scss";
-import { useOutsideClick } from "../hooks/hooks";
 import CancelPresentationIcon from "@mui/icons-material/CancelPresentation";
-import { useAppDispatch } from "../../app/hooks";
 import { togglePop } from "../../features/OthersSlice/OthersSlice";
+import { auth, googleProvider } from "../config/firebase-config";
+import GoogleIcon from "@mui/icons-material/Google";
+import { useOutsideClick } from "../hooks/hooks";
+import { useAppDispatch } from "../../app/hooks";
+import styles from "./Auth.module.scss";
+import { useState } from "react";
 
 export const Auth = () => {
   const [email, setEmail] = useState("");

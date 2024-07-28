@@ -40,6 +40,9 @@ $widthNavMenu: 300px;
     .secondLine {
       display: flex;
       justify-content: space-around;
+      button {
+        font-size: large;
+      }
     }
   }
 
@@ -66,4 +69,10 @@ $widthNavMenu: 300px;
 .orderButton {
   margin: 20px;
   min-width: 250px;
+  border-radius: 10px;
+  font-size: 15px;
+  &:hover {
+    background-color: rgba(195, 181, 181, 0.882);
+    transition: background-color 0.5s;
+  }
 }

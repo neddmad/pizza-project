@@ -1,20 +1,20 @@
+import { setHandleButtonState } from "../../features/NavOrderHandlerSlice/NavOrderHandlerSlice";
+import { fetchOrder, fetchOrderDetails } from "../../features/api/DataFetching";
 import CancelPresentationIcon from "@mui/icons-material/CancelPresentation";
-import DeleteIcon from "@mui/icons-material/Delete";
-import styles from "./NavMenu.module.scss";
-import classNames from "classnames";
-import { useOutsideClick } from "../hooks/hooks";
-import { Link } from "react-router-dom";
+import { closeNavMenu } from "../../features/OthersSlice/OthersSlice";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { useOutsideClick } from "../hooks/hooks";
+import styles from "./NavMenu.module.scss";
+import { Link } from "react-router-dom";
+import classNames from "classnames";
 import {
   addProduct,
   decreaseProductCount,
   deleteFromBasketAndStorage,
 } from "../../features/BasketSlice/BasketSlice";
-import { setHandleButtonState } from "../../features/NavOrderHandlerSlice/NavOrderHandlerSlice";
-import { closeNavMenu } from "../../features/OthersSlice/OthersSlice";
 import { useRef } from "react";
 import { PurchaseDataInterface } from "../types";
-import { fetchOrder, fetchOrderDetails } from "../../features/api/DataFetching";
 const NavMenu = () => {
   let prevValue = useRef<PurchaseDataInterface>({
     orderId: 1,

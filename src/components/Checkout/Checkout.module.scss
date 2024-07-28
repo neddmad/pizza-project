@@ -2,10 +2,14 @@
   body[data-theme="light"] {
     --text-color: var(--black);
     --borderColor: var(--blackBorder);
+    --display-none-light: var(--display-none);
+    --buttonColor: var(--white);
   }
   body[data-theme="dark"] {
     --text-color: var(--white);
     --borderColor: var(--whiteBorder);
+    --display-none-dark: var(--display-none);
+    --buttonColor: var(--gray-500);
   }
 }
 
@@ -15,15 +19,41 @@
   font-weight: 500;
 }
 
+.pizzaCheckOut {
+  display: var(--display-none-dark);
+  max-width: 350px;
+}
+
+.pizzaCheckOutBlack {
+  display: var(--display-none-light);
+  max-width: 350px;
+}
+
 .center {
   border: var(--borderColor);
   padding: 40px;
-  margin-top: 20px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  margin: 15px;
+}
+.goToMainPageButton {
+  background-color: var(--buttonColor);
+  color: var(--text-color);
+  border-radius: 20px;
+  padding: 10px;
+  font-weight: 800;
+  border: var(--borderColor);
+
+  &:hover {
+    background-color: rgb(237, 20, 12);
+    transition: 0.6s;
+  }
 }
 .checkout {
   color: var(--text-color);
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
 }
 
@@ -47,4 +77,10 @@
 .checkoutNumber:hover::after {
   transform: scaleX(1);
   transform-origin: bottom left;
+}
+
+@media (max-width: 720px) {
+  .checkout {
+    flex-direction: column;
+  }
 }

@@ -1,13 +1,12 @@
-import React from "react";
-import { BasketItemsInterface } from "../types";
-import styles from "./Checkout.module.scss";
-import classNames from "classnames";
-import { useLocation } from "react-router-dom";
 import { useAppSelector } from "../../app/hooks";
+import { useNavigate } from "react-router-dom";
+import styles from "./Checkout.module.scss";
+import pizzaCheckOut from "../assets/checkOutPics/pizzaCheckOut.jpg";
+import pizzaCheckOutBlack from "../assets/checkOutPics/pizzaCheckOutBlack.png";
 
 function Checkout() {
-  const { pathname } = useLocation();
   const basketSliceState = useAppSelector((state) => state.basket.basketItems);
+  const navigate = useNavigate();
 
   return (
     <div className={styles.checkout}>
@@ -34,7 +33,15 @@ function Checkout() {
             ) + " $"}
           </a>
         </h2>
+        <button
+          className={styles.goToMainPageButton}
+          onClick={() => navigate(0)}
+        >
+          На головну сторінку
+        </button>
       </div>
+      <img src={pizzaCheckOut} className={styles.pizzaCheckOut} />
+      <img src={pizzaCheckOutBlack} className={styles.pizzaCheckOutBlack} />
     </div>
   );
 }

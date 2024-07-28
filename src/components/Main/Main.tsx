@@ -1,9 +1,15 @@
-import { useEffect } from "react";
-import styles from "./Main.module.scss";
-import LocalPizzaIcon from "@mui/icons-material/LocalPizza";
 import LunchDiningIcon from "@mui/icons-material/LunchDining";
+import LocalPizzaIcon from "@mui/icons-material/LocalPizza";
 import LocalBarIcon from "@mui/icons-material/LocalBar";
+import { useAppSelector } from "../../app/hooks";
 import { Audio } from "react-loader-spinner";
+import Checkout from "../Checkout/Checkout";
+import styles from "./Main.module.scss";
+import Drinks from "../Drinks/Drinks";
+import Slider from "../Slider/Slider";
+import { useEffect } from "react";
+import Pizza from "../Pizza/Pizza";
+import Salat from "../Salat/Salat";
 import {
   Link,
   Route,
@@ -11,12 +17,6 @@ import {
   useLocation,
   useNavigate,
 } from "react-router-dom";
-import Checkout from "../Checkout/Checkout";
-import Drinks from "../Drinks/Drinks";
-import Pizza from "../Pizza/Pizza";
-import Salat from "../Salat/Salat";
-import Slider from "../Slider/Slider";
-import { useAppSelector } from "../../app/hooks";
 
 function Main() {
   const dataFetchingState = useAppSelector((state) => state.data);

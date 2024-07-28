@@ -1,11 +1,11 @@
+import { togglePop } from "../../features/OthersSlice/OthersSlice";
+import LogoutIcon from "@mui/icons-material/Logout";
+import LoginIcon from "@mui/icons-material/Login";
+import { useAppDispatch } from "../../app/hooks";
+import styles from "./isUserLogged.module.scss";
 import { useState, useRef } from "react";
 import { getAuth } from "firebase/auth";
 import { signOut } from "firebase/auth";
-import LoginIcon from "@mui/icons-material/Login";
-import LogoutIcon from "@mui/icons-material/Logout";
-import styles from "./isUserLogged.module.scss";
-import { useAppDispatch } from "../../app/hooks";
-import { togglePop } from "../../features/OthersSlice/OthersSlice";
 
 function IsUserLogged() {
   const [checkRef, setCheckRef] = useState(false);
