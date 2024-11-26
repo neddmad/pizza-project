@@ -148,9 +148,7 @@ const NavMenu = () => {
             </Link>
           )}
         </div>
-      ) : (
-        dataFecthingState.readOrder.map((e) => e.status + "...")
-      )}
+      ) : 'baking...'}
     </nav>
   );
 };

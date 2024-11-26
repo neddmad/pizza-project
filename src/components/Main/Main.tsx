@@ -17,6 +17,7 @@ import {
   useLocation,
   useNavigate,
 } from "react-router-dom";
+import Carrer from "../Career/Carrer";
 
 function Main() {
   const dataFetchingState = useAppSelector((state) => state.data);
@@ -44,6 +45,14 @@ function Main() {
         />
       </div>
     );
+  } else if(pathname === '/carrer'){
+    return (
+      <Carrer/>
+    )
+  } else if(pathname === '/checkout'){
+    return(
+      <Checkout/>
+    )
   } else {
     return (
       <div>
@@ -69,10 +78,9 @@ function Main() {
         </div>
         <Routes>
           <Route path="*" element={<Slider />} />
-          <Route path="pizza" element={<Pizza />} />
+          <Route path="/pizza" element={<Pizza />} />
           <Route path="/salat" element={<Salat />} />
           <Route path="/drinks" element={<Drinks />} />
-          <Route path="/checkout" element={<Checkout />} />
         </Routes>
       </div>
     );

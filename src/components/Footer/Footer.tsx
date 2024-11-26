@@ -8,6 +8,7 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import visa from "../assets/footerIcons/visaLogo.svg";
 import { useAppSelector } from "../../app/hooks";
 import styles from "./Footer.module.scss";
+import { Link } from "react-router-dom";
 
 function Footer() {
   const dataFetchingState = useAppSelector((state) => state.data);
@@ -51,7 +52,9 @@ function Footer() {
           </div>
           <div className={styles.secondBlock}>
             <a href="">Новини</a>
+            <Link to='/carrer'>
             <a href="">Кар'єра</a>
+            </Link>
             <a href="">Франчайзинг</a>
           </div>
           <div className={styles.thirdBlock}>

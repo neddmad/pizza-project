@@ -1,0 +1,26 @@
+.carrer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    .listCards {
+        list-style: none;
+        .card{
+            display: flex;
+            img{
+                width: 300px;
+                height: 200px;
+            }
+            .textInfo{
+                margin: 10px;
+            }
+        }
+    }
+    .carrerForm{
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+
+

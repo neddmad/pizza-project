@@ -28,10 +28,6 @@ function App() {
     dispatch(fetchRestaurants());
   }, []);
 
-  useEffect(() => {
-    dispatch(isInBasketFunc());
-  }, []);
-
   //add products to basket
   useEffect(() => {
     dispatch(setInitialValuesBasket());
