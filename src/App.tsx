@@ -13,6 +13,7 @@ import Auth from "./components/Auth/Auth";
 import { useEffect } from "react";
 import "./App.css";
 
+
 function App() {
   const dispatch = useAppDispatch();
   const othersSliceState = useAppSelector((state) => state.others);

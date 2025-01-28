@@ -64,7 +64,7 @@ export const dataFetchingSlice = createSlice({
 
 export const fetchMenu = createAsyncThunk("menu/fetchMenu", async () => {
   const request = await fetch(
-    "https://private-anon-d718afa727-pizzaapp.apiary-mock.com/restaurants/restaurantId/menu?category=Pizza&orderBy=rank"
+    "https://private-anon-425b309580-pizzaapp.apiary-mock.com/restaurants/restaurantId/menu?category=Pizza&orderBy=rank"
   );
   let response = request.json();
 
@@ -75,7 +75,7 @@ export const fetchOrderDetails = createAsyncThunk(
   "order/orderDetails",
   async (data: PurchaseDataInterface) => {
     const request = await fetch(
-      `https://private-anon-d718afa727-pizzaapp.apiary-mock.com/restaurants/${
+      `https://private-anon-425b309580-pizzaapp.apiary-mock.com/restaurants/${
         data === null ? null : data.orderId
       }`
     );
@@ -88,7 +88,7 @@ export const fetchRestaurants = createAsyncThunk(
   "menu/fetchRestaurants",
   async () => {
     const request = await fetch(
-      "https://private-anon-d718afa727-pizzaapp.apiary-mock.com/restaurants/"
+      "https://private-anon-425b309580-pizzaapp.apiary-mock.com/restaurants/"
     );
     let response = request.json();
 
@@ -99,7 +99,7 @@ export const fetchOrder = createAsyncThunk(
   "fetchOrder/Order",
   async (items: {}) => {
     const info = await fetch(
-      "https://private-anon-d718afa727-pizzaapp.apiary-mock.com/orders/",
+      "https://private-anon-425b309580-pizzaapp.apiary-mock.com/orders/",
       {
         method: "POST",
         body: JSON.stringify(items),
@@ -114,3 +114,5 @@ export const fetchOrder = createAsyncThunk(
 );
 
 export default dataFetchingSlice.reducer;
+
+

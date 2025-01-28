@@ -30,6 +30,8 @@ const NavMenu = () => {
   const othersSliceState = useAppSelector((state) => state.others);
   const basketSliceState = useAppSelector((state) => state.basket);
   const dataFecthingState = useAppSelector((state) => state.data);
+  console.log(basketSliceState.basketItems);
+  
 
   const newData = {
     data: basketSliceState.basketItems.map((elem) => {
